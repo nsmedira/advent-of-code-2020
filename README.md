@@ -1,0 +1,1 @@
+Visit [adventofcode.com](https://adventofcode.com/) to participate!
