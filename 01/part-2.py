@@ -1,4 +1,4 @@
-from parse import parse
+from parse import parse, list_strings_to_list_ints
 
 def find_three(t):
 
@@ -15,4 +15,4 @@ def find_three(t):
     return 'no match found'
 
 if __name__ == "__main__":
-    print(find_three(parse()))
+    print(find_three(list_strings_to_list_ints(parse())))

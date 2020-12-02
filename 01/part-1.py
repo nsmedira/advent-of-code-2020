@@ -1,4 +1,4 @@
-from parse import parse
+from parse import parse, list_strings_to_list_ints
 
 def find_match(t):
     for number in t:
@@ -8,4 +8,5 @@ def find_match(t):
     return 'no matches found'
 
 if __name__ == "__main__":
-    print(find_match(parse()))
+
+    print(find_match(list_strings_to_list_ints(parse())))
