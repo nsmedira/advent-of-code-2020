@@ -1,4 +1,5 @@
 from parse import parse
+from split_n_strip import *
 
 if __name__ == "__main__":
 
@@ -9,17 +10,12 @@ if __name__ == "__main__":
     # convert each entry in the list into a list
     for i in range(len(t)):
 
-        t[i] = t[i].split()
+        u = split_n_strip(t[i])
 
-        # t[i][0] will now be the range. split with '-'
-        # t[i][1] will be the character. strip ':'
-        # leave t[i][2] unmodified
-        t[i] = [t[i][0].split('-'), t[i][1].strip(':'), t[i][2]]
-        
         # does it fit policy?
-        letter = t[i][1]
-        a = t[i][2][int(t[i][0][0]) - 1]
-        b = t[i][2][int(t[i][0][1]) - 1]
+        letter = u[1]
+        a = u[2][int(u[0][0]) - 1]
+        b = u[2][int(u[0][1]) - 1]
         if (
             (
                 a == letter

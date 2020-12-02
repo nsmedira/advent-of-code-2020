@@ -1,4 +1,5 @@
 from parse import parse
+from split_n_strip import *
 
 if __name__ == "__main__":
 
@@ -9,21 +10,16 @@ if __name__ == "__main__":
     # convert each entry in the list into a list
     for i in range(len(t)):
 
-        t[i] = t[i].split()
-
-        # t[i][0] will now be the range. split with '-'
-        # t[i][1] will be the character. strip ':'
-        # leave t[i][2] unmodified
-        t[i] = [t[i][0].split('-'), t[i][1].strip(':'), t[i][2]]
+        u = split_n_strip(t[i])
 
         # count how many times the letter appears
         count = 0
-        for j in list(t[i][2]):
-            if j == t[i][1]:
+        for j in list(u[2]):
+            if j == u[1]:
                 count += 1
         
         # does it fit policy?
-        if count >= int(t[i][0][0]) and count <= int(t[i][0][1]):
+        if count >= int(u[0][0]) and count <= int(u[0][1]):
             number_valid += 1
 
     print(number_valid)
