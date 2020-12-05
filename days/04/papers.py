@@ -10,6 +10,10 @@ def is_passport(d):
         and 'pid' in d
     )
 
+def get_digits_from_string(string):
+
+    return ''.join(filter(str.isdigit, string))
+
 def valid_passport(d):
 
     if not is_passport(d):
@@ -23,8 +27,10 @@ def valid_passport(d):
     ecl = d.get('ecl')
     pid = d.get('pid')
 
-    hgt_number = int(''.join(filter(str.isdigit, hgt)))
-    hgt_unit = hgt[len(hgt_number):]
+    hgt_number = get_digits_from_string(hgt)
+    len_hgt = len(hgt_number)
+    hgt_number = int(hgt_number)
+    hgt_unit = hgt[len_hgt:]
     if hgt_unit == 'cm':
         hgt_valid = hgt_number >= 150 and hgt_number <= 193
     elif hgt_unit == 'in':
@@ -38,13 +44,21 @@ def valid_passport(d):
         hcl_valid = hcl[0] == '#'
 
     return (
-        len(byr) == 4 and byr >= 1920 and byr <= 2002
-        and len(iyr) == 4 and iyr >= 2010 and iyr <= 2020
-        and len(eyr) == 4 and eyr >= 2020 and eyr <= 2030
+        len(byr) == 4 and int(byr) >= 1920 and int(byr) <= 2002
+        and len(iyr) == 4 and int(iyr) >= 2010 and int(iyr) <= 2020
+        and len(eyr) == 4 and int(eyr) >= 2020 and int(eyr) <= 2030
         and hgt_valid
         and hcl_valid 
-        and 'ecl' in d
-        and 'pid' in d
+        and (
+            ecl == 'amb' 
+            or ecl == 'blu' 
+            or ecl == 'brn' 
+            or ecl == 'gry' 
+            or ecl == 'grn' 
+            or ecl == 'hzl' 
+            or ecl == 'oth'
+        )
+        and len(pid) == 9 and len(get_digits_from_string(pid)) == 9
     )
 
 def count_passports(t, f):
