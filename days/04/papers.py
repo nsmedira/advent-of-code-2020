@@ -43,21 +43,15 @@ def valid_passport(d):
     else:
         hcl_valid = hcl[0] == '#'
 
+    ecls = ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth']
+
     return (
         len(byr) == 4 and int(byr) >= 1920 and int(byr) <= 2002
         and len(iyr) == 4 and int(iyr) >= 2010 and int(iyr) <= 2020
         and len(eyr) == 4 and int(eyr) >= 2020 and int(eyr) <= 2030
         and hgt_valid
         and hcl_valid 
-        and (
-            ecl == 'amb' 
-            or ecl == 'blu' 
-            or ecl == 'brn' 
-            or ecl == 'gry' 
-            or ecl == 'grn' 
-            or ecl == 'hzl' 
-            or ecl == 'oth'
-        )
+        and ecl in ecls
         and len(pid) == 9 and len(get_digits_from_string(pid)) == 9
     )
 
